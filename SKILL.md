@@ -63,17 +63,19 @@ Aim for a mix across these levels. The number of questions defaults to 5, but th
 
 ### Step 4: Present the quiz
 
+Present questions **one at a time** using the `AskUserQuestion` tool. This gives the user a clickable selection UI instead of making them type answers.
+
 For each question:
 
-1. **Show the question** with 4 multiple-choice options (A through D). Make the wrong answers plausible — they should represent common misconceptions or reasonable-but-incorrect interpretations, not obviously silly options. Label them clearly.
+1. **Use `AskUserQuestion`** with the question text and 4 options (A through D). Make the wrong answers plausible — they should represent common misconceptions or reasonable-but-incorrect interpretations, not obviously silly options. Use the `label` field for the short answer (e.g., "A: The function returns null") and `description` for additional context if needed. Set `header` to something like "Q1 of 5".
 
-2. **Wait for the user's answer.** Don't reveal anything yet. Just ask "Your answer?" or similar.
-
-3. **After they answer**, explain:
+2. **After the user selects an answer**, explain:
    - Whether they got it right
    - **Why** the correct answer is correct, referencing the specific code (include file paths and line context)
    - If they got it wrong, explain why their choice was a reasonable mistake and what the key distinction is
    - A brief "the bigger picture" note connecting this to the overall design when relevant
+
+3. Then immediately present the next question via `AskUserQuestion`. Keep the flow moving — don't ask "ready for the next one?"
 
 ### Step 5: Score summary
 
